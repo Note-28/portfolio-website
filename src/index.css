@@ -1,0 +1,200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 142 100% 63%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 270 67% 71%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cyber-black text-foreground font-mono;
+  }
+}
+
+@layer components {
+  .terminal-window {
+    @apply bg-cyber-darkGray border border-cyber-gray rounded-md overflow-hidden;
+  }
+  
+  .terminal-header {
+    @apply bg-cyber-gray p-2 flex items-center justify-between;
+  }
+  
+  .terminal-body {
+    @apply p-4 text-sm;
+  }
+
+  .terminal-line {
+    @apply flex items-start mb-2;
+  }
+  
+  .terminal-prompt {
+    @apply text-cyber-green mr-2 flex-shrink-0;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-6 text-cyber-green flex items-center;
+  }
+
+  .section-title::before {
+    content: ">";
+    @apply mr-2 text-cyber-blue;
+  }
+
+  .glitch-container {
+    position: relative;
+  }
+
+  .glitch-text {
+    @apply inline-block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .glitch-text::before {
+    @apply text-cyber-red;
+    transform: translateX(-2px);
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::after {
+    @apply text-cyber-blue;
+    transform: translateX(2px);
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim {
+    0% {
+      transform: translateX(-2px) translateY(0);
+    }
+    25% {
+      transform: translateX(2px) translateY(0);
+    }
+    50% {
+      transform: translateX(-1px) translateY(-1px);
+    }
+    75% {
+      transform: translateX(1px) translateY(1px);
+    }
+    100% {
+      transform: translateX(-1px) translateY(0);
+    }
+  }
+
+  .typewriter-container {
+    @apply inline-block overflow-hidden whitespace-nowrap border-r-2 border-cyber-green;
+    animation: typing 4s steps(40) 1s 1 normal both, blinking 1s infinite;
+  }
+
+  .cyberpunk-card {
+    @apply bg-cyber-darkGray border border-cyber-gray hover:border-cyber-green transition-all duration-300 rounded-md p-4 overflow-hidden relative;
+  }
+  
+  .cyberpunk-card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-cyber-green/10 to-cyber-blue/5 opacity-0 transition-opacity duration-300;
+  }
+  
+  .cyberpunk-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .skill-bar {
+    @apply h-2 bg-cyber-darkGray overflow-hidden rounded-full;
+  }
+
+  .skill-progress {
+    @apply h-full bg-gradient-to-r from-cyber-green to-cyber-blue rounded-full;
+  }
+
+  .cyber-link {
+    @apply text-cyber-blue hover:text-cyber-green transition-colors duration-300 relative;
+  }
+  
+  .cyber-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-cyber-green transition-all duration-300;
+  }
+  
+  .cyber-link:hover::after {
+    @apply w-full;
+  }
+
+  .cyber-button {
+    @apply px-4 py-2 border border-cyber-green text-cyber-green bg-transparent hover:bg-cyber-green/10 transition-all duration-300 rounded font-medium;
+  }
+
+  .code-block {
+    @apply bg-cyber-gray p-4 rounded-md overflow-x-auto text-sm;
+  }
+
+  .comment {
+    @apply text-gray-500;
+  }
+
+  .keyword {
+    @apply text-cyber-purple;
+  }
+
+  .function {
+    @apply text-cyber-blue;
+  }
+
+  .string {
+    @apply text-cyber-green;
+  }
+
+  .number {
+    @apply text-cyber-yellow;
+  }
+}
